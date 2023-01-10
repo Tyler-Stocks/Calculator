@@ -1,0 +1,56 @@
+# Function to calculate the mean of a group of numbers
+def mean():
+    # Sets the dictionary for the numbers to occupy
+    numbers = []
+    # Loop to allow for numbers to be inputted until the user presses q
+    while True:
+        try:
+            number = input("Enter a number (enter 'q' to quit): ")
+            # Breaks the loop if the user presses q
+            if number == 'q':
+                break
+            # Checks how many numbers have been inputed
+            numbers.append(float(number))
+        # Error handling for if the user inputs a string instead of an int or float
+        except ValueError:
+            print("Invalid input. Please enter a valid number or 'q' to quit.")
+    # Calculates the mean of the inputted numbers
+    result = sum(numbers) / len(numbers)
+    # Prints the result to the terminal
+    print("The mean is: " + result)
+    
+# Function to calculate the mode of a group of numbers
+def mode():
+    numbers = []
+    while True:
+        try:
+            number = input("Enter a number (enter 'q' to quit): ")
+            if number == 'q':
+                break
+            numbers.append(float(number))
+        except ValueError:
+            print("Invalid input. Please enter a valid number or 'q' to quit.")
+
+    # Create a dictionary to store the frequency of each number
+    frequency = {}
+    for number in numbers:
+        if number in frequency:
+            frequency[number] += 1
+        else:
+            frequency[number] = 1
+
+    # Find the number with the highest frequency
+    highest_frequency = max(frequency.values())
+    mode = [number for number, count in frequency.items() if count == highest_frequency]
+
+    # Return the mode(s)
+    if len(mode) == len(numbers):
+        return "No mode"
+    elif len(mode) > 1:
+        return mode
+    else:
+        return mode[0]
+
+result = mode()
+print(result)
+
